@@ -276,9 +276,9 @@
         el.className = 'point-feedback';
         
         if (parseInt(amount) === 20) {
-            el.style.color = '#ff0000'; // 大当たりは赤
+            el.style.color = '#e6b800'; // 20枚は黄色
         } else if (parseInt(amount) === 5) {
-            el.style.color = '#e6b800'; // 5枚は黄色
+            el.style.color = '#e6b800'; // 5枚も黄色
         } else if (parseInt(amount) === 0) {
             el.style.color = '#777777'; // 0枚はグレー（目立たなくする）
         }
@@ -364,10 +364,10 @@
             <h3 style="margin-top:0;">いまの気持ちを尋ねます。当てはまるものを選択してください。</h3>
             <p style="font-size:14px;">（1: 全く感じない 〜 9: 極めて強く感じる）</p>`;
         const emotions = [
-            { id: 'happy', label: '幸せだ' },
-            { id: 'relax', label: 'リラックスしている' },
-            { id: 'disappoint', label: 'がっかりしている' },
-            { id: 'tension', label: '緊張している' }
+            { id: 'happy', label: '嬉しい' },
+            { id: 'relax', label: '安心だ' },
+            { id: 'disappoint', label: 'がっかりだ' },
+            { id: 'tension', label: '不安だ' }
         ];
         emotions.forEach(emo => {
             html += `
@@ -1072,6 +1072,22 @@
         }
     });
 
+// 結果発表前の感情評価 
+    timeline.push({
+        type: jsPsychSurveyHtmlForm,
+        on_start: ()=> { document.getElementById('trial-counter').style.display = 'none'; document.getElementById('score-board').style.display = 'none'; },
+        html: createEmotionForm('mid'), // midという名前で作成します
+        button_label: '回答完了',
+        on_finish: function(data) {
+            if (data && data.response) {
+                experiment_data.mid_happy = data.response.mid_happy;
+                experiment_data.mid_relax = data.response.mid_relax;
+                experiment_data.mid_disappoint = data.response.mid_disappoint;
+                experiment_data.mid_tension = data.response.mid_tension;
+            }
+        }
+    });
+
     timeline.push({
     
       type: jsPsychHtmlButtonResponse,
@@ -1111,6 +1127,7 @@
       stimulus: `<div class="instruction-wrap" style="text-align:center;">
           <p>すべての回答が完了しました。</p>
           <p>「データを保存する」を押して実験を終了してください。</p>
+          <p><span style="color:red;font-size:24px;font-weight:bold;">ブラウザを閉じずに</span>実験者にお声掛けください。</p>
       </div>`,
       choices: ['データを保存する'],
       on_finish: function() {
@@ -1195,27 +1212,23 @@
               summary_data.points_lost_unfollow_accurate_test : 0,
               points_lost_unfollow_inaccurate_test: typeof summary_data !== 'undefined' ?
               summary_data.points_lost_unfollow_inaccurate_test : 0,
-              final_money_reward: 3000, // 最終獲得金額は必ず3000枚 (注: 画面表記等は1500のままです)
+              final_money_reward: 3000, // 最終獲得金額は必ず3000枚
               eval_inaccurate: experiment_data.eval_inaccurate ||
               '未回答',
               eval_accurate: experiment_data.eval_accurate ||
               '未回答',
-              pre_happy: experiment_data.pre_happy ||
-              '未回答',
-              pre_relax: experiment_data.pre_relax ||
-              '未回答',
-              pre_disappoint: experiment_data.pre_disappoint ||
-              '未回答',
-              pre_tension: experiment_data.pre_tension ||
-              '未回答',
-              post_happy: experiment_data.post_happy ||
-              '未回答',
-              post_relax: experiment_data.post_relax ||
-              '未回答',
-              post_disappoint: experiment_data.post_disappoint ||
-              '未回答',
-              post_tension: experiment_data.post_tension ||
-              '未回答'
+              pre_happy: experiment_data.pre_happy ||'未回答',
+              pre_relax: experiment_data.pre_relax ||'未回答',
+              pre_disappoint: experiment_data.pre_disappoint ||'未回答',
+              pre_tension: experiment_data.pre_tension ||'未回答',
+              mid_happy: experiment_data.mid_happy || '未回答',
+              mid_relax: experiment_data.mid_relax || '未回答',
+              mid_disappoint: experiment_data.mid_disappoint || '未回答',
+              mid_tension: experiment_data.mid_tension || '未回答',
+              post_happy: experiment_data.post_happy ||'未回答',
+              post_relax: experiment_data.post_relax ||'未回答',
+              post_disappoint: experiment_data.post_disappoint ||'未回答',
+              post_tension: experiment_data.post_tension ||'未回答'
           });
 
           var now = new Date();
