@@ -317,10 +317,14 @@
         unfollow_inaccurate_training: 0, 
         total_success_training: 0,
         total_clicks_test: 0,
-        points_lost_follow_accurate_training: 0,
-        points_lost_follow_inaccurate_training: 0,
-        points_lost_unfollow_accurate_training: 0,
-        points_lost_unfollow_inaccurate_training: 0,
+        points_earned_follow_accurate_training: 0,
+        points_earned_follow_inaccurate_training: 0,
+        points_earned_unfollow_accurate_training: 0,
+        points_earned_unfollow_inaccurate_training: 0,
+        points_earned_follow_accurate_test: 0,
+        points_earned_follow_inaccurate_test: 0,
+        points_earned_unfollow_accurate_test: 0,
+        points_earned_unfollow_inaccurate_test: 0,
         follow_red_test: 0,
         follow_blue_test: 0,
         unfollow_red_test: 0,
@@ -1196,22 +1200,14 @@
               total_money_lost_test: typeof total_money_test !== 'undefined' ?
               total_money_test : 0, 
               total_money_lost_all: (typeof total_money !== 'undefined' ? total_money : 0) + (typeof total_money_test !== 'undefined' ? total_money_test : 0),
-              points_lost_follow_accurate_training: typeof summary_data !== 'undefined' ?
-              summary_data.points_lost_follow_accurate_training : 0,
-              points_lost_follow_inaccurate_training: typeof summary_data !== 'undefined' ?
-              summary_data.points_lost_follow_inaccurate_training : 0,
-              points_lost_unfollow_accurate_training: typeof summary_data !== 'undefined' ?
-              summary_data.points_lost_unfollow_accurate_training : 0,
-              points_lost_unfollow_inaccurate_training: typeof summary_data !== 'undefined' ?
-              summary_data.points_lost_unfollow_inaccurate_training : 0,
-              points_lost_follow_accurate_test: typeof summary_data !== 'undefined' ?
-              summary_data.points_lost_follow_accurate_test : 0,
-              points_lost_follow_inaccurate_test: typeof summary_data !== 'undefined' ?
-              summary_data.points_lost_follow_inaccurate_test : 0,
-              points_lost_unfollow_accurate_test: typeof summary_data !== 'undefined' ?
-              summary_data.points_lost_unfollow_accurate_test : 0,
-              points_lost_unfollow_inaccurate_test: typeof summary_data !== 'undefined' ?
-              summary_data.points_lost_unfollow_inaccurate_test : 0,
+              points_earned_follow_accurate_training: typeof summary_data !== 'undefined' ? summary_data.points_earned_follow_accurate_training : 0,
+              points_earned_follow_inaccurate_training: typeof summary_data !== 'undefined' ? summary_data.points_earned_follow_inaccurate_training : 0,
+              points_earned_unfollow_accurate_training: typeof summary_data !== 'undefined' ? summary_data.points_earned_unfollow_accurate_training : 0,
+              points_earned_unfollow_inaccurate_training: typeof summary_data !== 'undefined' ? summary_data.points_earned_unfollow_inaccurate_training : 0,
+              points_earned_follow_accurate_test: typeof summary_data !== 'undefined' ? summary_data.points_earned_follow_accurate_test : 0,
+              points_earned_follow_inaccurate_test: typeof summary_data !== 'undefined' ? summary_data.points_earned_follow_inaccurate_test : 0,
+              points_earned_unfollow_accurate_test: typeof summary_data !== 'undefined' ? summary_data.points_earned_unfollow_accurate_test : 0,
+              points_earned_unfollow_inaccurate_test: typeof summary_data !== 'undefined' ? summary_data.points_earned_unfollow_inaccurate_test : 0,
               final_money_reward: 3000, // 最終獲得金額は必ず3000枚
               eval_inaccurate: experiment_data.eval_inaccurate ||
               '未回答',
