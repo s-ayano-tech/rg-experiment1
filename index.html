@@ -444,7 +444,7 @@
     });
     timeline.push({ 
         type: jsPsychHtmlButtonResponse, 
-        stimulus: `<div class="instruction-wrap"><p>実験参加ありがとうございます。</p><p>これから、画面上の宝箱をクリックすることでお金と交換できるコインを獲得できるゲームを行なってもらいます。<br>コインは、2枚で1円として換算されます。<br>獲得したコインはお金に換えて実験終了後に報酬としてお渡しします。</p></div>`, 
+        stimulus: `<div class="instruction-wrap"><p>実験参加ありがとうございます。</p><p>これから、画面上の宝箱をクリックすることでお金と交換できるコインを獲得できるゲームを行なってもらいます。<br>コインは、1枚で2円として換算されます。<br>獲得したコインはお金に換えて実験終了後に報酬としてお渡しします。</p></div>`, 
         choices: ['次へ'] 
     });
     var chest_test_trial = {
@@ -1062,7 +1062,7 @@
       stimulus: function() {
           return `<div class="instruction-wrap" style="text-align:center;">
               <h2>お疲れ様でした。ゲーム終了です。</h2>
-              <p>あなたは最終的に<span style="color:red;font-size:24px;font-weight:bold;">3000枚</span>獲得しました。</p>
+              <p>あなたは最終的に<span style="color:red;font-size:24px;font-weight:bold;">750枚</span>獲得しました。</p>
           </div>`;
       },
       choices: ['次へ'],
